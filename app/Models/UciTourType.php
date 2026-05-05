@@ -6,10 +6,10 @@ use CodeIgniter\Model;
 
 class UciTourType extends Model
 {
-    protected $table            = 'ucitourtypes';
+    protected $table            = 'uci_tour_type';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [];

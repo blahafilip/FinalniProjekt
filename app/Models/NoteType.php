@@ -6,10 +6,10 @@ use CodeIgniter\Model;
 
 class NoteType extends Model
 {
-    protected $table            = 'notetypes';
+    protected $table            = 'note_type';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [];

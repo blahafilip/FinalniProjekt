@@ -6,10 +6,10 @@ use CodeIgniter\Model;
 
 class RaceType extends Model
 {
-    protected $table            = 'racetypes';
-    protected $primaryKey       = 'id';
+    protected $table            = 'race_type';
+    protected $primaryKey       = 'short';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [];

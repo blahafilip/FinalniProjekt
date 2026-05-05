@@ -6,10 +6,10 @@ use CodeIgniter\Model;
 
 class ParcourType extends Model
 {
-    protected $table            = 'parcourtypes';
+    protected $table            = 'parcour_type';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [];
