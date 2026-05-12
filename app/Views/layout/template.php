@@ -1,10 +1,11 @@
 <html>
     <head> 
         <title>Titulek</title>
-    </head> 
-    <body>
- 
-         <!--Dynamický obsah -->
-         <?= $this->renderSection("content"); ?> 
-    <body>
+        <?= $this->include("layout/assets");?> 
+ </head> 
+ <body>
+ <?= $this->include("layout/navbar");?>
+ <!--Dynamický obsah -->
+ <?= $this->renderSection("content"); ?> 
+ <body>
 </html>

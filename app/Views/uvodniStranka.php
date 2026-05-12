@@ -1,11 +1,5 @@
-<html>
-    <head> 
-        <title>Titulek</title>
-        <?= $this->include("layout/assets");?> 
- </head> 
- <body>
- <?= $this->include("layout/navbar");?>
- <!--Dynamický obsah -->
- <?= $this->renderSection("content"); ?> 
- <body>
-</html>
+<?=$this->extend("layout/template");?>
+
+<?=$this->section("content");?>
+    <h1 class="justify-content-center"> zavody</h1>
+<?=$this->endSection();?>
