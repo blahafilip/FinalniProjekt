@@ -11,4 +11,8 @@ class Main extends BaseController
     {
         echo view("uvodniStranka");
     }
+    public function zavody()
+    {
+        
+    }
 }
