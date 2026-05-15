@@ -1,5 +1,9 @@
 <?=$this->extend("layout/template");?>
-
+<?php
+/**
+ * @var object $pager
+ */
+?>
 <?=$this->section("content");?>
 <div class="container mt-4">
         <h3 class="text-center">závody</h3>
@@ -9,7 +13,7 @@
             $table->setHeading("Rok","Závod");
         
             foreach($infoRace as $row){
-                $table ->addRow( $row->year, $row->real_name);
+                $table ->addRow($row->year, anchor("zavody/$row->id", $row->real_name));
             }
             
             $template = array(

@@ -20,7 +20,7 @@ class Main extends BaseController
         $raceV = $RaceYear->where("sex", $sex)->orderBy('year', 'DESC')->paginate($perPage);
         
         $pager = $RaceYear->pager;
-         
+
         $data = [
             "infoRace" => $raceV,
             "pager" => $pager
@@ -29,8 +29,16 @@ class Main extends BaseController
         echo view("uvodniStranka", $data);
 
     }
-    public function zavody()
-    {
-        
-    }
+    public function zavody($id)
+{
+    $RaceYear = new RaceYear();
+    
+    $raceV = $RaceYear->where("id", $id)->findAll();
+
+    $data = [
+        "infoRace" => $raceV
+    ];
+
+    echo view("infoZavody", $data);
+}
 }
