@@ -29,8 +29,12 @@ class Main extends BaseController
         echo view("uvodniStranka", $data);
 
     }
-    public function zavody()
+    public function zavody($id)
     {
-        
+        $RaceYear = new RaceYear();
+        $data = [
+            "race" => $RaceYear->find($id)
+        ];
+        echo view("druhaStranka", $data);
     }
 }
