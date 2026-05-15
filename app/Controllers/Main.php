@@ -30,6 +30,7 @@ class Main extends BaseController
 
     }
     public function zavody($id)
+<<<<<<< HEAD
 {
     $RaceYear = new RaceYear();
     
@@ -41,4 +42,13 @@ class Main extends BaseController
 
     echo view("infoZavody", $data);
 }
+=======
+    {
+        $RaceYear = new RaceYear();
+        $data = [
+            "race" => $RaceYear->find($id)
+        ];
+        echo view("druhaStranka", $data);
+    }
+>>>>>>> c396d3c268108d12fb0860ce9d46e38b94e9ce7c
 }

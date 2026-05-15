@@ -13,7 +13,7 @@
             $table->setHeading("Rok","Závod");
         
             foreach($infoRace as $row){
-                $table ->addRow($row->year, anchor("zavody/$row->id", $row->real_name));
+                $table ->addRow( $row->year, $row->real_name);
             }
             
             $template = array(
@@ -38,8 +38,8 @@
                 );
                 $table->setTemplate($template);
                 
-            echo $table -> generate();  
-            echo $pager -> links();
+            echo $table->generate();  
+            echo $pager->links();
             ?>
     </div>
 
