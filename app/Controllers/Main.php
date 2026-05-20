@@ -30,19 +30,6 @@ class Main extends BaseController
 
     }
     public function zavody($id)
-<<<<<<< HEAD
-{
-    $RaceYear = new RaceYear();
-    
-    $raceV = $RaceYear->where("id", $id)->findAll();
-
-    $data = [
-        "infoRace" => $raceV
-    ];
-
-    echo view("infoZavody", $data);
-}
-=======
     {
         $RaceYear = new RaceYear();
         $data = [
@@ -50,5 +37,4 @@ class Main extends BaseController
         ];
         echo view("druhaStranka", $data);
     }
->>>>>>> c396d3c268108d12fb0860ce9d46e38b94e9ce7c
 }

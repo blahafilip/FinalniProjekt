@@ -2,6 +2,7 @@
 <?php
 /**
  * @var object $pager
+ * @var object $infoRace
  */
 ?>
 <?=$this->section("content");?>
@@ -10,10 +11,10 @@
         <?php
             $table = new \CodeIgniter\View\Table();
 
-            $table->setHeading("Rok","Závod");
+            $table->setHeading("Závod","Rok");
         
             foreach($infoRace as $row){
-                $table ->addRow( $row->year, $row->real_name);
+                $table ->addRow (anchor('zavody/'.$row->id, $row->real_name) , $row->year);
             }
             
             $template = array(

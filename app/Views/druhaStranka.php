@@ -1,4 +1,9 @@
 <?=$this->extend("layout/template");?>
+<?php  
+/**
+* @var object $race
+*/
+?>
 <?=$this->section("content");?>
 
 <div class="container mt-4">
@@ -9,7 +14,7 @@
         <tr><th>Název</th>  <td><?= esc($race->real_name) ?></td></tr>
         <tr><th>Datum</th>  <td><?= date('d.m.Y', strtotime($race->start_date)) ?></td></tr>
         <tr><th>Logo</th>   <td><img src="<?= base_url('obrazky/loga/' . $race->logo) ?>" height="60"></td></tr>
-        <tr><th>Země</th>   <td><span class="fi fi-<?= strtolower($race->country) ?>" style="font-size:2rem;"></span></td></tr>
+        <tr><th>Země</th>   <td><span class="fi fi-<?= $race->country ?>" style="font-size:2rem;"></span></td></tr>
     </table>
 </div>
 
