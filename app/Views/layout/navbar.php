@@ -1,19 +1,15 @@
-<!-- A grey horizontal navbar that becomes vertical on small screens -->
-<nav class="navbar navbar-expand-sm bg-light">
+<!-- layout/navbar.php -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container justify-content-center">
+        <a class="navbar-brand " href="<?= site_url('/') ?>">Domů</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
 
-  <div class="container-fluid justify-content-center bg-dark ">
-    <!-- Links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link text-danger" href="#">Link 1</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-danger" href="#">Link 2</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-danger" href="#">Link 3</a>
-      </li>
-    </ul>
-  </div>
 
+            </ul>
+        </div>
+    </div>
 </nav>

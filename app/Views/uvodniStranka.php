@@ -1,6 +1,13 @@
 <?=$this->extend("layout/template");?>
 
 <?=$this->section("content");?>
+<?php
+    /**
+     * @var object $pager
+     * @var array $infoRace
+     * 
+     */
+?>
 <div class="container mt-4">
         <h3 class="text-center">závody</h3>
         <?php
