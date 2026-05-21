@@ -11,10 +11,10 @@
         <?php
             $table = new \CodeIgniter\View\Table();
 
-            $table->setHeading("Závod","Rok");
+            $table->setHeading("Rok","Závod");
         
             foreach($infoRace as $row){
-                $table ->addRow (anchor('zavody/'.$row->id, $row->real_name) , $row->year);
+                $table ->addRow ( $row->year, anchor('zavody/'.$row->id, $row->real_name) );
             }
             
             $template = array(
