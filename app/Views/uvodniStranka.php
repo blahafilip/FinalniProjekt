@@ -6,6 +6,7 @@
  */
 ?>
 <?=$this->section("content");?>
+<?= anchor('uvodniStranka/add', 'Přidat závod', ['class' => 'btn btn-primary mb-3']) ?>
 <div class="container mt-4">
         <h3 class="text-center">závody</h3>
         <?php

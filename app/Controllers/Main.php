@@ -37,4 +37,45 @@ class Main extends BaseController
         ];
         echo view("druhaStranka", $data);
     }
+
+    public function add()
+    {
+
+        $sex = "W";
+        $db = new RaceYear();
+
+        $years = $db->table('race_type')->distinct()->orderBy('year', 'DESC')->findColumn('year');
+        $categories = $db->table('race_type')->distinct()->findColumn('category');
+
+        $data = [
+            "rocniky" => $years,
+            "kategorie" => $categories
+        ];
+
+        echo view('add', $data);
+    }
+
+    public function create()
+    {
+        $name = $this->request->getPost('name');
+        $short_name = $this->request->getPost('short_name');
+        $description = $this->request->getPost('description');
+
+        $raceModel = new RaceYear();
+
+        $data = [
+            'name' => $name,
+            'short_name' => $short_name,
+            'info' => $description
+        ];
+
+        $result = $raceModel->save($data);
+        if ($result) {
+            service('alerts')->set('success', 'recordCreated');
+        } else {
+            service('alerts')->set('danger', 'recordCreated');
+        }
+
+        return redirect()->to('form-alert');
+    }
 }
