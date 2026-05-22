@@ -7,4 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Main::index');
 $routes->get('zavody', 'Main::zavody');
+
 $routes->get('zavody/(:num)', 'Main::zavody/$1');
+
+$routes->get('uvodniStranka/add', 'Main::add');
