@@ -4,7 +4,7 @@
 <div class="container mt-4">
 <h1>Add country</h1>
 <div class="row">
-    <form action="<?= base_url('form-alert/country/create') ?>" method="post">
+    <form action="<?= base_url('form-helper/races/create') ?>" method="post">
         <div class="col-md-10">
             <?php
             $atributyRaceName = [
@@ -29,7 +29,7 @@
 
             <?= form_dropdown_bs("year", $rocniky, [], 'mb-3', "Ročník závodu") ?>
 
-            <?=  form_input_bs("race_name", $atributyRaceName, "Název závodu") ?>
+            <?=  form_input_bs("real_name", $atributyRaceName, "Název závodu") ?>
 
             <?= form_input_bs("start_date", $atributyZacatek, "Datum startu závodu", "date") ?>
 

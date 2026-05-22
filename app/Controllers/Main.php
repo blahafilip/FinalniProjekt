@@ -26,7 +26,7 @@ class Main extends BaseController
             "pager" => $pager
         ];
 
-        echo view("uvodniStranka", $data);
+        echo view("races/index", $data);
 
     }
     public function zavody($id)
@@ -35,7 +35,7 @@ class Main extends BaseController
         $data = [
             "race" => $RaceYear->find($id)
         ];
-        echo view("druhaStranka", $data);
+        echo view("races/druhaStranka", $data);
     }
 
     public function add()
@@ -52,30 +52,32 @@ class Main extends BaseController
             "kategorie" => $categories
         ];
 
-        echo view('add', $data);
+        echo view('races/add', $data);
     }
 
     public function create()
     {
-        $name = $this->request->getPost('name');
-        $short_name = $this->request->getPost('short_name');
-        $description = $this->request->getPost('description');
+        $real_name   = $this->request->getPost('real_name');
+        $year        = $this->request->getPost('year');
+        $start_date  = $this->request->getPost('start_date');
+        $end_date    = $this->request->getPost('end_date');
+        $category    = $this->request->getPost('categories');
+        $logo = $this->request->getPost('logo');
 
         $raceModel = new RaceYear();
 
         $data = [
-            'name' => $name,
-            'short_name' => $short_name,
-            'info' => $description
+            'real_name' => $real_name,
+            'year' => $year,
+            'start_date' => $start_date,
+            'end_date' => $end_date,
+            'category' => $category,
+            'logo' => $logo,
+            'sex' => 'W'
         ];
 
-        $result = $raceModel->save($data);
-        if ($result) {
-            service('alerts')->set('success', 'recordCreated');
-        } else {
-            service('alerts')->set('danger', 'recordCreated');
-        }
+        $raceModel->save($data);
 
-        return redirect()->to('form-alert');
+        return redirect()->to('form-helper');
     }
 }

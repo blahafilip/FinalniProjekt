@@ -15,7 +15,7 @@
 ?>
 <div class="container mt-4">
         <h3 class="text-center">závody</h3>
-        <?= anchor('uvodniStranka/add', 'Přidat závod', ['class' => 'btn btn-primary mb-3']) ?>
+        <?= anchor('form-helper/races/add', 'Přidat závod', ['class' => 'btn btn-primary mb-3']) ?>
         <?php
             $table = new \CodeIgniter\View\Table();
 
