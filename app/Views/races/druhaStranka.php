@@ -12,7 +12,7 @@
      */
 ?>
 <div class="container mt-4">
-    <a href="<?= site_url('/') ?>" class="btn btn-dark mb-3">← Zpět</a>
+    <a href="<?= site_url('/') ?>" class="btn btn-dark mb-3">Zpět</a>
     <h3 class="text-center"><?= esc($race->real_name) ?></h3>
 
     <table class="table table-bordered mt-3">
