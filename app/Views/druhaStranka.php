@@ -1,4 +1,9 @@
 <?=$this->extend("layout/template");?>
+<?php  
+/**
+* @var object $race
+*/
+?>
 <?=$this->section("content");?>
 <?php
     /**

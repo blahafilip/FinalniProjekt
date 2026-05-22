@@ -1,5 +1,10 @@
 <?=$this->extend("layout/template");?>
-
+<?php
+/**
+ * @var object $pager
+ * @var object $infoRace
+ */
+?>
 <?=$this->section("content");?>
 <?php
     /**
@@ -16,10 +21,7 @@
             $table->setHeading("Rok","Závod");
         
             foreach($infoRace as $row){
-                $table->addRow(
-                    $row->year,
-                    '<a href="' . site_url('zavody/' . $row->id) . '">' . esc($row->real_name) . '</a>'
-                );
+                $table ->addRow ( $row->year, anchor('zavody/'.$row->id, $row->real_name) );
             }
             
             $template = array(

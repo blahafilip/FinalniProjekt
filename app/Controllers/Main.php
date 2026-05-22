@@ -20,7 +20,7 @@ class Main extends BaseController
         $raceV = $RaceYear->where("sex", $sex)->orderBy('year', 'DESC')->paginate($perPage);
         
         $pager = $RaceYear->pager;
-         
+
         $data = [
             "infoRace" => $raceV,
             "pager" => $pager
