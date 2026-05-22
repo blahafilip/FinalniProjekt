@@ -1,8 +1,16 @@
 <?= $this->extend('layout/template') ?>
 
 <?= $this->section('content') ?>
+<?php
+    /**
+     * @var array $rocniky
+     * @var array $kategorie
+     */
+?>
 <div class="container mt-4">
-<h1>Add country</h1>
+<h1>Přidat závod</h1>
+<a href="<?= site_url('/') ?>" class="btn btn-dark mb-3">Zpět</a>
+
 <div class="row">
     <form action="<?= base_url('form-alert/country/create') ?>" method="post">
         <div class="col-md-10">
@@ -39,8 +47,10 @@
 
             <?= form_input_bs("logo", [], "Logo závodu", "file") ?>
 
-            <button type="submit" class="btn btn-primary">Send</button>
+            <button type="submit" class="btn btn-dark">Send</button>
+            
         </div>
+        
     </form>
 </div>
 
