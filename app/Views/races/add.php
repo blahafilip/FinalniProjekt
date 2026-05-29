@@ -34,8 +34,27 @@
             ];
 
             ?>
+<?php  /** 
+        <?= form_dropdown_bs("year", $rocniky2, [], 'mb-3', "Ročník závodu") ?>
+        */
+?>
 
-            <?= form_dropdown_bs("year", $rocniky2, [], 'mb-3', "Ročník závodu") ?>
+<div class="mb-3">
+    <label for="year" class="form-label">Ročník závodu</label>
+
+    <select class="form-select js-example-basic-single" id="year" name="year">
+
+        <?php foreach($rocniky2 as $key => $value): ?>
+
+            <option value="<?= $key ?>">
+                <?= esc($value) ?>
+            </option>
+
+        <?php endforeach; ?>
+
+    </select>
+</div>
+
 
             <div class="mb-3">
     <label for="race_id" class="form-label">Závod</label>
@@ -44,8 +63,7 @@
 
         <?php foreach($zavody as $type => $races): ?>
 
-            <optgroup label="<?= esc($type) ?>">
-
+        
                 <?php foreach($races as $race): ?>
 
                     <option value="<?= $race['id'] ?>">
@@ -53,8 +71,6 @@
                     </option>
 
                 <?php endforeach; ?>
-
-            </optgroup>
 
         <?php endforeach; ?>
 
@@ -79,37 +95,14 @@
 </div>
 
 </div>
-<?= $this->endSection() ?>
-
-<?= $this->section('script') ?>
 
 <script>
-    tinymce.init({
-        license_key: 'gpl',
-        promotion: false,
-        selector: 'textarea#description',
-        height: 500,
-        entity_encoding: 'raw',
-        plugins: [
-            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-            'insertdatetime', 'media', 'table', 'help', 'wordcount',
-        ],
-        toolbar: 'undo redo | blocks | ' +
-            'bold italic underline backcolor | alignleft aligncenter ' +
-            'alignright alignjustify | bullist numlist outdent indent | ' +
-            'removeformat',
-        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
-    });
+   
 
     $(document).ready(function () {
 
-$('.js-example-basic-single').select2({
-    placeholder: 'Vyber závod',
-    width: '100%'
-});
+$('.js-example-basic-single').select2();
 
 });
 </script>
-
 <?= $this->endSection() ?>

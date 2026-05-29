@@ -2,6 +2,7 @@
   "dependencies": {
     "bootstrap": "^5.3.8",
     "flag-icons": "^7.5.0",
+    "jquery": "^4.0.0",
     "select2": "^4.0.13",
     "tinymce": "^8.5.1"
   }
