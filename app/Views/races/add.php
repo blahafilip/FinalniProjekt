@@ -3,7 +3,7 @@
 <?= $this->section('content') ?>
 <?php
     /**
-     * @var array $rocniky
+     * @var array $rocniky2
      * @var array $kategorie
      */
 ?>
@@ -35,7 +35,31 @@
 
             ?>
 
-            <?= form_dropdown_bs("year", $rocniky, [], 'mb-3', "Ročník závodu") ?>
+            <?= form_dropdown_bs("year", $rocniky2, [], 'mb-3', "Ročník závodu") ?>
+
+            <div class="mb-3">
+    <label for="race_id" class="form-label">Závod</label>
+
+    <select class="form-select js-example-basic-single" id="race_id" name="race_id">
+
+        <?php foreach($zavody as $type => $races): ?>
+
+            <optgroup label="<?= esc($type) ?>">
+
+                <?php foreach($races as $race): ?>
+
+                    <option value="<?= $race['id'] ?>">
+                        <?= esc($race['default_name']) ?>
+                    </option>
+
+                <?php endforeach; ?>
+
+            </optgroup>
+
+        <?php endforeach; ?>
+
+    </select>
+</div>
 
             <?=  form_input_bs("real_name", $atributyRaceName, "Název závodu") ?>
 
@@ -45,7 +69,7 @@
 
             <?= form_dropdown_bs("categories", $kategorie, [], 'mb-3', "Kategorie Závodů") ?>
 
-            <?= form_input_bs("logo", [], "Logo závodu", "file") ?>
+            <input type="file" name="logo" class="form-control" id="logo" accept=".jpg, .png"> 
 
             <button type="submit" class="btn btn-dark">Send</button>
             
@@ -77,6 +101,15 @@
             'removeformat',
         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
     });
+
+    $(document).ready(function () {
+
+$('.js-example-basic-single').select2({
+    placeholder: 'Vyber závod',
+    width: '100%'
+});
+
+});
 </script>
 
 <?= $this->endSection() ?>

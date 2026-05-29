@@ -6,6 +6,9 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\RaceYear;
 use Config\KonfiguracniSoubor;
+use App\Libraries\File;
+use App\Libraries\ArrayLib;
+use App\Models\Race;
 
 
 class Main extends BaseController
@@ -41,18 +44,57 @@ class Main extends BaseController
     public function add()
     {
 
-        $sex = "W";
-        $db = new RaceYear();
-
-        $years = $db->table('race_type')->distinct()->orderBy('year', 'DESC')->findColumn('year');
-        $categories = $db->table('race_type')->distinct()->findColumn('category');
-
-        $data = [
-            "rocniky" => $years,
-            "kategorie" => $categories
-        ];
-
-        echo view('races/add', $data);
+        
+            $sex = "W";
+        
+            $db = new RaceYear();
+            $raceModel = new Race();
+        
+            $arrayLib = new ArrayLib();
+        
+            $years = $db
+                ->table('race_type')
+                ->distinct()
+                ->orderBy('year', 'DESC')
+                ->findColumn('year');
+        
+            $years2 = $arrayLib->setValueToKey($years);
+        
+            $categories = $db
+                ->table('race_type')
+                ->distinct()
+                ->findColumn('category');
+        
+            $categories2 = $arrayLib->setValueToKey($categories);
+        
+            $races = $raceModel
+                ->table('cyklo_race')
+                ->select('id, default_name, type')
+                ->orderBy('type', 'ASC')
+                ->orderBy('default_name', 'ASC')
+                ->get()
+                ->getResultArray();
+        
+            $grouped = [];
+        
+            foreach ($races as $race) {
+        
+                $type = $race['type'];
+        
+                $grouped[$type][] = [
+                    'id' => $race['id'],
+                    'default_name' => $race['default_name']
+                ];
+            }
+        
+            $data = [
+                "kategorie" => $categories2,
+                "rocniky2" => $years2,
+                "zavody" => $grouped
+            ];
+        
+            echo view('races/add', $data);
+        
     }
 
     public function create()
@@ -75,6 +117,9 @@ class Main extends BaseController
             'logo' => $logo,
             'sex' => 'W'
         ];
+
+
+        //var_dump($data);
 
         $raceModel->save($data);
 
