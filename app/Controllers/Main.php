@@ -6,6 +6,9 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\RaceYear;
 use Config\KonfiguracniSoubor;
+use App\Libraries\File;
+use App\Libraries\ArrayLib;
+use App\Models\Race;
 
 
 class Main extends BaseController
@@ -26,7 +29,7 @@ class Main extends BaseController
             "pager" => $pager
         ];
 
-        echo view("uvodniStranka", $data);
+        echo view("races/index", $data);
 
     }
     public function zavody($id)
@@ -35,47 +38,91 @@ class Main extends BaseController
         $data = [
             "race" => $RaceYear->find($id)
         ];
-        echo view("druhaStranka", $data);
+        echo view("races/druhaStranka", $data);
     }
 
     public function add()
     {
 
-        $sex = "W";
-        $db = new RaceYear();
-
-        $years = $db->table('race_type')->distinct()->orderBy('year', 'DESC')->findColumn('year');
-        $categories = $db->table('race_type')->distinct()->findColumn('category');
-
-        $data = [
-            "rocniky" => $years,
-            "kategorie" => $categories
-        ];
-
-        echo view('add', $data);
+        
+            $sex = "W";
+        
+            $db = new RaceYear();
+            $raceModel = new Race();
+        
+            $arrayLib = new ArrayLib();
+        
+            $years = $db
+                ->table('race_type')
+                ->distinct()
+                ->orderBy('year', 'DESC')
+                ->findColumn('year');
+        
+            $years2 = $arrayLib->setValueToKey($years);
+        
+            $categories = $db
+                ->table('race_type')
+                ->distinct()
+                ->findColumn('category');
+        
+            $categories2 = $arrayLib->setValueToKey($categories);
+        
+            $races = $raceModel
+                ->table('cyklo_race')
+                ->select('id, default_name, type')
+                ->orderBy('type', 'ASC')
+                ->orderBy('default_name', 'ASC')
+                ->get()
+                ->getResultArray();
+        
+            $grouped = [];
+        
+            foreach ($races as $race) {
+        
+                $type = $race['type'];
+        
+                $grouped[$type][] = [
+                    'id' => $race['id'],
+                    'default_name' => $race['default_name']
+                ];
+            }
+        
+            $data = [
+                "kategorie" => $categories2,
+                "rocniky2" => $years2,
+                "zavody" => $grouped
+            ];
+        
+            echo view('races/add', $data);
+        
     }
 
     public function create()
     {
-        $name = $this->request->getPost('name');
-        $short_name = $this->request->getPost('short_name');
-        $description = $this->request->getPost('description');
+        $real_name   = $this->request->getPost('real_name');
+        $year        = $this->request->getPost('year');
+        $start_date  = $this->request->getPost('start_date');
+        $end_date    = $this->request->getPost('end_date');
+        $category    = $this->request->getPost('categories');
+        $logo = $this->request->getPost('logo');
 
         $raceModel = new RaceYear();
 
         $data = [
-            'name' => $name,
-            'short_name' => $short_name,
-            'info' => $description
+            'real_name' => $real_name,
+            'year' => $year,
+            'start_date' => $start_date,
+            'end_date' => $end_date,
+            'category' => $category,
+            'logo' => $logo,
+            'sex' => 'W'
         ];
 
-        $result = $raceModel->save($data);
-        if ($result) {
-            service('alerts')->set('success', 'recordCreated');
-        } else {
-            service('alerts')->set('danger', 'recordCreated');
-        }
 
-        return redirect()->to('form-alert');
+        //var_dump($data);
+
+        $raceModel->save($data);
+
+        return redirect()->to('form-helper');
     }
 }
